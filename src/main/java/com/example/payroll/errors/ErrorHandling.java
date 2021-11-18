@@ -28,4 +28,10 @@ public class ErrorHandling {
     public String orderNotFoundHandler(OrderNotFoundException ex) {
         return ex.getMessage();
     }
+    @ResponseBody
+    @ExceptionHandler(ProductNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String productNotFoundHandler(ProductNotFoundException ex) {
+        return ex.getMessage();
+    }
 }
