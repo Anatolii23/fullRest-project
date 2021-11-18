@@ -17,5 +17,5 @@ Migration in liquibase.
 - Put One: update`component`By`reference`
 - Post one: save`component`
 - Delete one: delete`component`By`reference`
-- 
+
 with use ModelAssembler and links to each componets.
