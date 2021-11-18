@@ -1,6 +1,7 @@
 # fullRest-project with spring
 simple project on java with spring
 Entity consist of Customer,Employee,Order.
+with use JpaRepo
 DataBase is mySQL
 Migration in liquibase. 
 
