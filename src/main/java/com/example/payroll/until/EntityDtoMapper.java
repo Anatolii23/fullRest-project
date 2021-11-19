@@ -3,12 +3,26 @@ package com.example.payroll.until;
 import com.example.payroll.entity.Customer;
 import com.example.payroll.entity.Employee;
 import com.example.payroll.entity.Order;
+import com.example.payroll.entity.Product;
 import com.example.payroll.rest.dto.CustomerDto;
 import com.example.payroll.rest.dto.EmployeeDto;
 import com.example.payroll.rest.dto.OrderDto;
+import com.example.payroll.rest.dto.ProductDto;
 import org.springframework.beans.BeanUtils;
 
 public class EntityDtoMapper {
+    public static ProductDto mappedToProductDto(Product product){
+        ProductDto productDto = ProductDto.builder().build();
+        BeanUtils.copyProperties(product,productDto);
+        return productDto;
+    }
+
+        public static Product mappedToProductEntity(ProductDto productDto){
+            Product product = Product.builder().build();
+            BeanUtils.copyProperties(productDto,product);
+            return product;
+        }
+
     public static EmployeeDto mappedToEmployeeDto(Employee employee){
         EmployeeDto employeeDto = EmployeeDto.builder().build();
         BeanUtils.copyProperties(employee,employeeDto);

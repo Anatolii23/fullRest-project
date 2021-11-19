@@ -1,6 +1,7 @@
 package com.example.payroll.services;
 
 import com.example.payroll.entity.Customer;
+import com.example.payroll.errors.CustomerNotFoundException;
 import com.example.payroll.errors.EmployeeNotFoundException;
 import com.example.payroll.repository.CustomerRepository;
 import com.example.payroll.rest.dto.CustomerDto;
@@ -44,7 +45,7 @@ public class CustomersService {
     public EntityModel<CustomerDto> getCustomerDto(Long id) {
         CustomerDto customerDto = customerRepository.findById(id)
                 .map(EntityDtoMapper::mappedToCustomerDto)
-                .orElseThrow(() -> new EmployeeNotFoundException(id));
+                .orElseThrow(() -> new CustomerNotFoundException(id));
         return customerModelAssembler.toModel(customerDto);
     }
 
