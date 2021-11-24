@@ -1,7 +1,6 @@
 package com.example.payroll.services;
 
 import com.example.payroll.entity.Product;
-import com.example.payroll.errors.EmployeeNotFoundException;
 import com.example.payroll.errors.ProductNotFoundException;
 import com.example.payroll.repository.ProductRepository;
 import com.example.payroll.rest.dto.ProductDto;
@@ -36,13 +35,22 @@ public class ProductService {
     }
 
     public EntityModel<ProductDto> getProductDtoEntityModel(ProductDto newProduct) {
-        Product product = EntityDtoMapper.mappedToProductEntity(newProduct);
-        productRepository.save(product);
-        ProductDto productDto = EntityDtoMapper.mappedToProductDto(product);
-        return productModelAssembler.toModel(productDto);
+        if (productRepository.findByName(newProduct.getName()).isEmpty()) {
+            Product product = EntityDtoMapper.mappedToProductEntity(newProduct);
+            productRepository.save(product);
+            ProductDto productDto = EntityDtoMapper.mappedToProductDto(product);
+            return productModelAssembler.toModel(productDto);
+        } else {
+            Product product = productRepository.findByName(newProduct.getName()).get();
+            product.setQuantity(product.getQuantity() + newProduct.getQuantity());
+            productRepository.save(product);
+            ProductDto productDto = EntityDtoMapper.mappedToProductDto(product);
+            return productModelAssembler.toModel(productDto);
+        }
     }
 
     public void deleteCustomerById(Long id) {
+        productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
         productRepository.deleteById(id);
     }
 

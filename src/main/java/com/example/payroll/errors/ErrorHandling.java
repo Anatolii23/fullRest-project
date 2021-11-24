@@ -34,4 +34,10 @@ public class ErrorHandling {
     public String productNotFoundHandler(ProductNotFoundException ex) {
         return ex.getMessage();
     }
+    @ResponseBody
+    @ExceptionHandler(ProductBigQuantityException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String productBigQuantityHandler(ProductBigQuantityException ex) {
+        return ex.getMessage();
+    }
 }

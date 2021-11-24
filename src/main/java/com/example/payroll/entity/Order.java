@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "CUSTOMER_ORDER")
@@ -28,6 +29,8 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<OrderedProduct> product;
 
 
 

@@ -10,14 +10,13 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @Builder
-public class ProductDto {
+public class OrderedProductDto {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
     @NotNull
     @NotBlank
     private String name;
-    @NotNull
-    @Min(0)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private double price;
     @NotNull
     @Min(0)

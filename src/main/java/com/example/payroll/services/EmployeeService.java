@@ -54,6 +54,7 @@ public class EmployeeService {
         return assembler.toModel(employeeDto);
     }
     public void deleteEmployeeById(Long id) {
+        employeeRepository.findById(id).orElseThrow(()-> new EmployeeNotFoundException(id));
         employeeRepository.deleteById(id);
     }
 }

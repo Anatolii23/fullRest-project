@@ -9,6 +9,7 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -36,10 +37,10 @@ public class OrderController {
     }
 
     @PostMapping("/orders")
-    public ResponseEntity<EntityModel<OrderDto>> newOrder(@RequestBody OrderDto orderDto,
-                                                          @RequestParam Long customerId,
-                                                          @RequestParam Long employeeId) {
-        OrderDto newOrder = orderServices.getNewOrder(orderDto, customerId, employeeId);
+    public ResponseEntity<EntityModel<OrderDto>> newOrder(@Valid @RequestBody OrderDto orderDto,
+                                                          @Valid @RequestParam Long customerId,
+                                                          @Valid @RequestParam Long employeeId) {
+        OrderDto newOrder = orderServices.createNewOrder(orderDto, customerId, employeeId);
         return ResponseEntity
                 .created(linkTo(methodOn(OrderController.class).getOneOrder(newOrder.getId())).toUri())
                 .body(assembler.toModel(newOrder));

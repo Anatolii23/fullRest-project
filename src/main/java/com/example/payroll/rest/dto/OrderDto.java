@@ -8,10 +8,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
+
 @Data
 @Builder
 public class OrderDto {
@@ -26,7 +27,8 @@ public class OrderDto {
     @DateTimeFormat
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Date date;
-    @NotNull
-    @Min(0)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Double price;
+    @NotNull
+    private List<OrderedProductDto> product;
 }

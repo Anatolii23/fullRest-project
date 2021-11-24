@@ -8,18 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PRODUCTS")
+@Table(name = "ordered_products")
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
-public class Product {
+public class OrderedProduct {
     @Id
     @GeneratedValue
     private Long id;
     private String name;
     private double price;
     private int quantity;
-
 }
