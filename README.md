@@ -2,7 +2,7 @@
 
 simple project on java with spring
 
-Entity consist of Customer,Employee,Order.
+Entity consist of Customer,Employee,Order and Product.
 
 with use JpaRepo
 
